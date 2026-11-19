@@ -20,7 +20,12 @@ class WebSecurityConfig(
         authServerClient = authServerClient,
         securityProperties = securityProperties,
     ) {
-    // Bearer tokens only, no session or cookies, so CSRF does not apply.
+    // CSRF is intentionally disabled: the service is a stateless OAuth2 resource server. There is
+    // no session cookie a CSRF attacker could ride: every request authenticates with a Bearer JWT
+    // in the Authorization header, which a cross-site form post cannot set. With CSRF on, every
+    // POST would be refused with 403 even with a valid token. The cookie-session surface is the
+    // Portal's gateway, which enforces CSRF itself. CodeQL "Disabled Spring CSRF protection"
+    // (java/spring-disabled-csrf-protection) is acknowledged here.
     @Bean
     override fun securityFilterChain(http: HttpSecurity): SecurityFilterChain {
         http.csrf { it.disable() }
