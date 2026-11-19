@@ -1,4 +1,7 @@
-package org.octopusden.octopus.provisioning.common.dto
+package org.octopusden.octopus.provisioning.common.dto.resolved
+
+import org.octopusden.octopus.provisioning.common.dto.configuration.RepositoryEntry
+import org.octopusden.octopus.provisioning.common.dto.configuration.TemplateRef
 
 /**
  * One requested repository URL with its resolved fields. [entry] is the repository entry that matched the URL,

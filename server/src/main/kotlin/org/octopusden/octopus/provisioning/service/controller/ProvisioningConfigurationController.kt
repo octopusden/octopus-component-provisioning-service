@@ -6,9 +6,9 @@ import io.swagger.v3.oas.annotations.media.Content
 import io.swagger.v3.oas.annotations.media.Schema
 import io.swagger.v3.oas.annotations.responses.ApiResponse
 import io.swagger.v3.oas.annotations.tags.Tag
-import org.octopusden.octopus.provisioning.common.dto.ApiErrorResponse
-import org.octopusden.octopus.provisioning.common.dto.ProvisioningConfiguration
-import org.octopusden.octopus.provisioning.common.dto.ResolvedConfiguration
+import org.octopusden.octopus.provisioning.common.dto.configuration.ProvisioningConfiguration
+import org.octopusden.octopus.provisioning.common.dto.error.ApiErrorResponse
+import org.octopusden.octopus.provisioning.common.dto.resolved.ResolvedConfiguration
 import org.octopusden.octopus.provisioning.service.service.ProvisioningConfigurationService
 import org.octopusden.octopus.provisioning.service.service.ProvisioningService
 import org.springframework.web.bind.annotation.GetMapping

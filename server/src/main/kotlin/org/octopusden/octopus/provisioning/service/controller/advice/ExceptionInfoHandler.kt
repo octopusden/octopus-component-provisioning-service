@@ -1,7 +1,7 @@
 package org.octopusden.octopus.provisioning.service.controller.advice
 
-import org.octopusden.octopus.provisioning.common.dto.ApiError
-import org.octopusden.octopus.provisioning.common.dto.ApiErrorResponse
+import org.octopusden.octopus.provisioning.common.dto.error.ApiError
+import org.octopusden.octopus.provisioning.common.dto.error.ApiErrorResponse
 import org.octopusden.octopus.provisioning.service.service.NotImplementedException
 import org.slf4j.LoggerFactory
 import org.springframework.http.HttpStatus

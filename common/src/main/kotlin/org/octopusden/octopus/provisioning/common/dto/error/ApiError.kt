@@ -1,4 +1,4 @@
-package org.octopusden.octopus.provisioning.common.dto
+package org.octopusden.octopus.provisioning.common.dto.error
 
 data class ApiError(
     val code: Int,

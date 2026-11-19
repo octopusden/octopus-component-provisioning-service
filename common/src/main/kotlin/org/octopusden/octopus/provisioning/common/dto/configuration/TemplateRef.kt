@@ -1,4 +1,4 @@
-package org.octopusden.octopus.provisioning.common.dto
+package org.octopusden.octopus.provisioning.common.dto.configuration
 
 /**
  * The repository template: either one fixed GAV, or a GAV per component label.

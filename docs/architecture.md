@@ -34,6 +34,19 @@ Why each rule:
 
 Gradle enforces the dependency rules: a module cannot import what its build file does not declare. This page holds the reasons.
 
+### What `common` holds
+
+`common` holds only types that cross the wire: what callers send and receive. Types that never leave the service (what it reads from other systems, parsed markers, template descriptors, internal plans) live in `server`.
+
+The types sit in `org.octopusden.octopus.provisioning.common.dto`, in sub-packages by API area:
+
+| Package | For |
+| --- | --- |
+| `dto.configuration` | The catalogue: `ProvisioningConfiguration` and its parts (`Origin`, `RepositoryEntry`, `TemplateRef`, `BuildChain`, `ExtraStage`) |
+| `dto.resolved` | The answer to "which configuration serves this origin": `ResolvedConfiguration`, with each field marked fixed or open |
+| `dto.provisioning` | Provisioning: the request a caller sends (`ProvisioningRequest`) and the status it gets back (`ProvisioningStatus`, `ProvisioningState`) |
+| `dto.error` | The error envelope: `ApiErrorResponse`, `ApiError` |
+
 ## Request flow
 
 The service declares these endpoints:

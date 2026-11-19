@@ -1,4 +1,4 @@
-package org.octopusden.octopus.provisioning.common.dto
+package org.octopusden.octopus.provisioning.common.dto.configuration
 
 /**
  * One provisioning configuration, as the catalogue holds it.

@@ -1,8 +1,8 @@
 package org.octopusden.octopus.provisioning.service.service
 
-import org.octopusden.octopus.provisioning.common.dto.ProvisioningRequest
-import org.octopusden.octopus.provisioning.common.dto.ProvisioningStatus
-import org.octopusden.octopus.provisioning.common.dto.ResolvedConfiguration
+import org.octopusden.octopus.provisioning.common.dto.provisioning.ProvisioningRequest
+import org.octopusden.octopus.provisioning.common.dto.provisioning.ProvisioningStatus
+import org.octopusden.octopus.provisioning.common.dto.resolved.ResolvedConfiguration
 import org.octopusden.octopus.provisioning.service.service.NotImplementedException
 import org.springframework.stereotype.Service
 

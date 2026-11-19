@@ -1,4 +1,4 @@
-package org.octopusden.octopus.provisioning.common.dto
+package org.octopusden.octopus.provisioning.common.dto.provisioning
 
 /** The provisioning status of a component: the selected configuration and the state of each step. */
 data class ProvisioningStatus(

@@ -1,4 +1,4 @@
-package org.octopusden.octopus.provisioning.common.dto
+package org.octopusden.octopus.provisioning.common.dto.provisioning
 
 /**
  * Values for the build chain fields the configuration leaves open. A fixed field may be omitted; a different

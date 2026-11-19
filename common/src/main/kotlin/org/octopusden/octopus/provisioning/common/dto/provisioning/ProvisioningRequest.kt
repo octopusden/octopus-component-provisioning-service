@@ -1,4 +1,4 @@
-package org.octopusden.octopus.provisioning.common.dto
+package org.octopusden.octopus.provisioning.common.dto.provisioning
 
 /** The body of a provisioning request. */
 data class ProvisioningRequest(

@@ -5,9 +5,9 @@ import org.junit.jupiter.api.Assertions.assertFalse
 import org.junit.jupiter.api.Assertions.assertNull
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
-import org.octopusden.octopus.provisioning.common.dto.ExtraStage
-import org.octopusden.octopus.provisioning.common.dto.Origin
-import org.octopusden.octopus.provisioning.common.dto.TemplateRef
+import org.octopusden.octopus.provisioning.common.dto.configuration.ExtraStage
+import org.octopusden.octopus.provisioning.common.dto.configuration.Origin
+import org.octopusden.octopus.provisioning.common.dto.configuration.TemplateRef
 import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.boot.test.context.ConfigDataApplicationContextInitializer
 import org.springframework.boot.test.context.runner.ApplicationContextRunner

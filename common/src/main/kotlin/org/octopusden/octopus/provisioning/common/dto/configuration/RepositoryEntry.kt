@@ -1,4 +1,4 @@
-package org.octopusden.octopus.provisioning.common.dto
+package org.octopusden.octopus.provisioning.common.dto.configuration
 
 /**
  * A repository entry. An entry without [urlRegex] is the default entry. An absent [useExisting] is open for

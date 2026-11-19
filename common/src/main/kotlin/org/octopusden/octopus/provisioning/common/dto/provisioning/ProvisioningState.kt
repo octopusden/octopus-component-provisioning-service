@@ -1,4 +1,4 @@
-package org.octopusden.octopus.provisioning.common.dto
+package org.octopusden.octopus.provisioning.common.dto.provisioning
 
 /**
  * The state of a repository or of the build chain. The constants are the design's `not-started`,

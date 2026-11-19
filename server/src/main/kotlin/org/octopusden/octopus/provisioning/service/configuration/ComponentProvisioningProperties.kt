@@ -1,6 +1,6 @@
 package org.octopusden.octopus.provisioning.service.configuration
 
-import org.octopusden.octopus.provisioning.common.dto.ProvisioningConfiguration
+import org.octopusden.octopus.provisioning.common.dto.configuration.ProvisioningConfiguration
 import org.springframework.boot.context.properties.ConfigurationProperties
 
 /**

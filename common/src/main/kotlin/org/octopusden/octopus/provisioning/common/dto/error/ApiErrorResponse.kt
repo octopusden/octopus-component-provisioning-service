@@ -1,4 +1,4 @@
-package org.octopusden.octopus.provisioning.common.dto
+package org.octopusden.octopus.provisioning.common.dto.error
 
 /** The error envelope of the Octopus REST API Guidelines: `{"error": {"code": 404, "message": "..."}}`. */
 data class ApiErrorResponse(
