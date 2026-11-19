@@ -52,7 +52,7 @@ The service reads its settings from Spring Cloud Config (token in `VAULT_TOKEN`)
 | `spring.security.oauth2.client.registration.keycloak.client-id`, `client-secret` | The service account (from Vault) |
 | `octopus-security.roles` | Role to permission map; may be empty |
 | `component-provisioning.configurations` | The catalogue: a list of provisioning configurations |
-| `component-provisioning.clients.{vcs-facade,automation-service,components-registry}.url` | Base URLs of the services to call; declared, not used yet |
+| `vcs-facade.url`, `teamcity-automation-service.url`, `components-registry.url` | Base URLs of the services to call; declared, not used yet |
 
 The catalogue is served as written and is not validated. A catalogue entry looks like this:
 

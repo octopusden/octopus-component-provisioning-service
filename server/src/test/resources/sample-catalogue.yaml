@@ -29,6 +29,3 @@ component-provisioning:
         - urlRegex: "ssh://git@.*/shared\\.git"
           useExisting: true
         - template: "com.example:ww-template:1.0"
-  clients:
-    vcs-facade:
-      url: https://vcs-facade.example.com

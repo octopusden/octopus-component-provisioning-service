@@ -28,9 +28,6 @@ class ComponentProvisioningPropertiesTest {
         runner.run { context ->
             val properties = context.getBean(ComponentProvisioningProperties::class.java)
             assertTrue(properties.configurations.isEmpty())
-            assertNull(properties.clients.vcsFacade.url)
-            assertNull(properties.clients.automationService.url)
-            assertNull(properties.clients.componentsRegistry.url)
         }
     }
 
@@ -87,8 +84,6 @@ class ComponentProvisioningPropertiesTest {
             assertNull(default.urlRegex)
             assertNull(default.useExisting)
             assertEquals(TemplateRef(gav = "com.example:ww-template:1.0"), default.template)
-
-            assertEquals("https://vcs-facade.example.com", properties.clients.vcsFacade.url)
         }
     }
 }
