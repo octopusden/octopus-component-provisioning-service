@@ -1,0 +1,36 @@
+# The service is reached through the gateway, which strips its prefix and sends it as X-Forwarded-Prefix.
+server:
+  forward-headers-strategy: framework
+
+spring:
+  jackson:
+    default-property-inclusion: non_null
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          # The issuer is derived from the Keycloak server and realm below.
+          issuer-uri: ${auth-server.url}/realms/${auth-server.realm}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,prometheus
+  endpoint:
+    health:
+      probes:
+        enabled: true
+
+# The Keycloak server and realm that issue the tokens; set per environment (required at startup).
+# auth-server:
+#   url: https://auth.example.com
+#   realm: example
+# The service account comes from the environment (Vault):
+# spring.security.oauth2.client.registration.keycloak.client-id / client-secret
+
+octopus-security:
+  roles: {}
+
+component-provisioning:
+  configurations: []
