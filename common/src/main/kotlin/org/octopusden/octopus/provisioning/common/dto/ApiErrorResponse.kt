@@ -4,8 +4,3 @@ package org.octopusden.octopus.provisioning.common.dto
 data class ApiErrorResponse(
     val error: ApiError,
 )
-
-data class ApiError(
-    val code: Int,
-    val message: String,
-)
