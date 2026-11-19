@@ -11,7 +11,8 @@ See [docs/architecture.md](docs/architecture.md) for how the modules and package
 
 ## Modules
 
-- `common`: the catalogue DTOs, with no framework dependencies.
+- `common`: the catalogue DTOs, with no framework dependencies. It is published to the shared GitHub Packages
+  registry as `org.octopusden.octopus.provisioning:common`.
 - `server` (Gradle project `component-provisioning-service`): the Spring Boot service, built into a Docker
   image `octopusden/component-provisioning-service`.
 

@@ -15,7 +15,16 @@ plugins {
 }
 
 octopusQuality {
-    // The deliverable is the Docker image built from the server; nothing is published to Maven.
+    // Every publication goes to GitHub Packages, none to Central (release.yml); the set still
+    // guards against a publication appearing or changing unnoticed.
+    publication {
+        enforceCentralPublications.set(true)
+        centralPublications.set(
+            setOf(
+                ":common|maven|org.octopusden.octopus.provisioning:common|[jar, jar:javadoc, jar:sources]",
+            ),
+        )
+    }
     kotlin {
         failOnViolation.set(true)
     }
@@ -50,6 +59,8 @@ subprojects {
     }
 
     extensions.configure<JavaPluginExtension> {
+        withJavadocJar()
+        withSourcesJar()
         toolchain.languageVersion.set(JavaLanguageVersion.of(25))
     }
 
@@ -66,5 +77,9 @@ subprojects {
 
     tasks.withType<Test>().configureEach {
         useJUnitPlatform()
+    }
+
+    extra["signingRequired"] = System.getenv().let {
+        it.containsKey("ORG_GRADLE_PROJECT_signingKey") && it.containsKey("ORG_GRADLE_PROJECT_signingPassword")
     }
 }
