@@ -5,6 +5,7 @@ import org.octopusden.cloud.commons.security.client.AuthServerClient
 import org.octopusden.octopus.provisioning.service.configuration.ComponentProvisioningProperties
 import org.octopusden.octopus.provisioning.service.configuration.WebSecurityConfig
 import org.octopusden.octopus.provisioning.service.service.ProvisioningConfigurationService
+import org.octopusden.octopus.provisioning.service.service.ProvisioningService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.boot.webmvc.test.autoconfigure.WebMvcTest
@@ -19,7 +20,7 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPat
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers.status
 
 @WebMvcTest(ProvisioningConfigurationController::class)
-@Import(WebSecurityConfig::class, ProvisioningConfigurationService::class)
+@Import(WebSecurityConfig::class, ProvisioningConfigurationService::class, ProvisioningService::class)
 @EnableConfigurationProperties(ComponentProvisioningProperties::class)
 @TestPropertySource(
     properties = [

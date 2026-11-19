@@ -2,6 +2,7 @@ package org.octopusden.octopus.provisioning.service.controller.advice
 
 import org.octopusden.octopus.provisioning.common.dto.ApiError
 import org.octopusden.octopus.provisioning.common.dto.ApiErrorResponse
+import org.octopusden.octopus.provisioning.service.service.NotImplementedException
 import org.slf4j.LoggerFactory
 import org.springframework.http.HttpStatus
 import org.springframework.http.MediaType
@@ -28,6 +29,10 @@ class ExceptionInfoHandler {
         // The exception text can carry an upstream system's URL and response body; it stays in the log.
         return errorResponse(HttpStatus.INTERNAL_SERVER_ERROR, INTERNAL_ERROR_MESSAGE)
     }
+
+    @ExceptionHandler(NotImplementedException::class)
+    fun handleNotImplemented(e: NotImplementedException): ResponseEntity<ApiErrorResponse> =
+        errorResponse(HttpStatus.NOT_IMPLEMENTED, e.message ?: "Not implemented yet")
 
     private fun errorResponse(
         status: HttpStatus,

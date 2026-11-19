@@ -20,7 +20,7 @@ An arrow means "depends on". Dashed parts do not exist yet.
 
 | Module | Owns | May depend on | Must never depend on |
 | --- | --- | --- | --- |
-| `common` | The wire contract: the catalogue types and the error envelope | nothing | anything |
+| `common` | The wire contract: the catalogue types, the provisioning request, status and resolved-configuration types, and the error envelope | nothing | anything |
 | `server` | The Spring Boot service | `common`, later the clients of the services it calls | `client`, `ft` |
 | `client` (later) | The Feign client for the API | `common` | `server` |
 | `ft` (later) | The functional tests, run against a started server | `client` | `server` |
@@ -36,14 +36,27 @@ Gradle enforces the dependency rules: a module cannot import what its build file
 
 ## Request flow
 
-Today the service has one endpoint:
+The service declares these endpoints:
+
+| Endpoint | Answers |
+| --- | --- |
+| `GET /rest/api/1/configurations` | The catalogue, as configured |
+| `GET /rest/api/1/configurations?profile=…` or `?componentTemplate=…[&componentTemplateVersion=…]`, with `url=…` repeatable | The `ResolvedConfiguration` for that origin: each field fixed or open, and the repository entry that matched each URL. **501 until implemented** |
+| `GET /rest/api/1/components/{id}/provisioning` | The `ProvisioningStatus`. **501 until implemented** |
+| `POST /rest/api/1/components/{id}/provisioning` | Provisions, or continues after a failure, from a `ProvisioningRequest`; safe to repeat. **501 until implemented** |
+
+`{id}` is the component's id in the components registry. One handler serves `GET .../configurations`: with `profile` or `componentTemplate` it resolves the origin, otherwise it returns the catalogue.
 
 ```
 caller ── GET /rest/api/1/configurations ──► security library: valid token?
-                                               └─► controller
+                                               └─► ProvisioningConfigurationController
                                                      └─► ProvisioningConfigurationService
                                                            └─► ComponentProvisioningProperties
                                                                  (bound from Spring Cloud Config)
+
+caller ── /rest/api/1/components/{id}/provisioning ──► security library ──► ProvisioningController
+                                                                              └─► ProvisioningService
+                                                                                    (throws NotImplementedException → 501)
 ```
 
 Every endpoint except the actuator and the Swagger UI needs a valid Keycloak token. The shared security library checks it before the controller runs. Any authenticated user may read the catalogue.
@@ -69,8 +82,9 @@ The server's packages are grouped by role, so a new piece has one obvious place:
 
 ```
 org.octopusden.octopus.provisioning.service
-├── controller/      HTTP only: ProvisioningConfigurationController, advice/ExceptionInfoHandler
-├── service/         the use case: ProvisioningConfigurationService
+├── controller/      HTTP only: ProvisioningConfigurationController, ProvisioningController, advice/ExceptionInfoHandler
+├── service/         the use case: ProvisioningConfigurationService, ProvisioningService, NotImplementedException
+│                    (declared but not built yet; ExceptionInfoHandler answers 501)
 └── configuration/   properties and wiring: ComponentProvisioningProperties, WebSecurityConfig
 ```
 

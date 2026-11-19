@@ -3,7 +3,18 @@
 Serves the provisioning-configuration catalogue: for each kind of component, which repository templates,
 build chain options and extra stages it gets when it is provisioned.
 
-`GET /rest/api/1/configurations` returns the catalogue as configured. Every endpoint except
+Endpoints:
+
+- `GET /rest/api/1/configurations` returns the catalogue as configured.
+- `GET /rest/api/1/configurations?profile=…` (or `?componentTemplate=…&componentTemplateVersion=…`), with
+  `url=…` repeatable, returns the configuration that serves the origin, each field fixed or open. Not
+  implemented yet: answers 501.
+- `GET /rest/api/1/components/{id}/provisioning` returns the provisioning status of a component. Not
+  implemented yet: answers 501.
+- `POST /rest/api/1/components/{id}/provisioning` provisions the component, or continues after a failure; it is
+  safe to repeat. Not implemented yet: answers 501.
+
+`{id}` is the component's id in the components registry. Every endpoint except
 `/actuator/**` and the Swagger UI needs a valid Keycloak bearer token. Any authenticated user may read the
 catalogue.
 
