@@ -1,0 +1,44 @@
+# The service is reached through the gateway, which strips its prefix and sends it as X-Forwarded-Prefix.
+server:
+  forward-headers-strategy: framework
+
+spring:
+  jackson:
+    default-property-inclusion: non_null
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          # The issuer is derived from the Keycloak server and realm below.
+          issuer-uri: ${auth-server.url}/realms/${auth-server.realm}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,prometheus
+  endpoint:
+    health:
+      probes:
+        enabled: true
+
+# The Keycloak server and realm that issue the tokens; set per environment (required at startup).
+# auth-server:
+#   url: https://auth.example.com
+#   realm: example
+# The technical account for vcs-facade and teamcity-automation-service comes from the environment (Vault):
+# technical-account.username / password. It is sent as HTTP Basic auth through the gateway, which
+# turns it into a Bearer token. Not used yet.
+
+# Role to permission map; environments may override it. No endpoint checks the permission yet. The map
+# must not be empty: Spring Boot 3 binds `roles: {}` to null, and the security library's
+# SecurityProperties needs a non-null map.
+octopus-security:
+  roles:
+    ROLE_COMPONENTS_REGISTRY_EDITOR:
+      - PROVISION_COMPONENTS
+    ROLE_COMPONENTS_REGISTRY_TEMPLATE_CREATOR:
+      - PROVISION_COMPONENTS
+
+component-provisioning:
+  configurations: []

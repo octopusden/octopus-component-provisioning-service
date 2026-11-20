@@ -1,0 +1,31 @@
+component-provisioning:
+  configurations:
+    - id: solution
+      version: 3
+      origins:
+        - { componentTemplate: solution }
+      repositories:
+        - template:
+            byLabel:
+              helm: "com.example:helm-template:1.0"
+              ansible: "com.example:ansible-template:1.0"
+      buildChain:
+        parentProjectId: example-project
+        extraStages:
+          - name: "Deploy to QA [Manual]"
+            template: CDComponentDeploy
+            checkout: compile
+            parametersFromCompile: [DISTRIBUTION_ARTIFACTS_COORDINATES, BUILD_VERSION]
+          - name: "UAT"
+    - id: regular
+      version: 1
+      origins: [ { profile: regular-external }, { profile: regular-internal } ]
+    - id: ww
+      version: 2
+      selectable: true
+      origins:
+        - { componentTemplate: ww, componentTemplateVersion: "2" }
+      repositories:
+        - urlRegex: "ssh://git@.*/shared\\.git"
+          useExisting: true
+        - template: "com.example:ww-template:1.0"
