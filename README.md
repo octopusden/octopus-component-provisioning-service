@@ -50,7 +50,7 @@ The service reads its settings from Spring Cloud Config (token in `VAULT_TOKEN`)
 |---|---|
 | `auth-server.url`, `auth-server.realm` | The Keycloak server and realm; the token issuer (`spring.security.oauth2.resourceserver.jwt.issuer-uri`) is derived from them |
 | `technical-account.username`, `technical-account.password` | The technical account (from Vault) for vcs-facade and teamcity-automation-service, sent as HTTP Basic auth through the gateway; not used yet |
-| `octopus-security.roles` | Role to permission map; may be empty |
+| `octopus-security.roles` | Role to permission map; by default `ROLE_COMPONENTS_REGISTRY_EDITOR` and `ROLE_COMPONENTS_REGISTRY_TEMPLATE_CREATOR` map to `PROVISION_COMPONENTS`; it must not be empty |
 | `component-provisioning.configurations` | The catalogue: a list of provisioning configurations |
 | `vcs-facade.url`, `teamcity-automation-service.url`, `components-registry.url` | Base URLs of the services to call; declared, not used yet |
 

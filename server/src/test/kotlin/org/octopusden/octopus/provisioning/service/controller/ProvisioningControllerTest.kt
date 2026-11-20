@@ -8,7 +8,7 @@ import org.octopusden.octopus.provisioning.service.service.ProvisioningConfigura
 import org.octopusden.octopus.provisioning.service.service.ProvisioningService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.context.properties.EnableConfigurationProperties
-import org.springframework.boot.webmvc.test.autoconfigure.WebMvcTest
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest
 import org.springframework.context.annotation.Import
 import org.springframework.http.MediaType
 import org.springframework.security.oauth2.jwt.JwtDecoder
