@@ -87,7 +87,7 @@ Provisioning itself (later) adds these parts behind a provisioning API:
 - **Coordinator**: runs the steps in order, repositories first, then the build chain; stops on a conflict and never rolls a step back. A caller retries by repeating the request.
 - **Status Reader**: reads the state of each created resource and interprets the marker the service left on it.
 
-They call, with the caller's token, the components registry; with a service-account token, vcs-facade and the build chain automation service; and the Maven repository for the template zips.
+They call, with the caller's token, the components registry; with a technical account (HTTP Basic auth through the gateway, which turns it into a Bearer token), vcs-facade and the build chain automation service; and the Maven repository for the template zips.
 
 ## Inside the server
 

@@ -26,8 +26,9 @@ management:
 # auth-server:
 #   url: https://auth.example.com
 #   realm: example
-# The service account comes from the environment (Vault):
-# spring.security.oauth2.client.registration.keycloak.client-id / client-secret
+# The technical account for vcs-facade and teamcity-automation-service comes from the environment (Vault):
+# technical-account.username / password. It is sent as HTTP Basic auth through the gateway, which
+# turns it into a Bearer token. Not used yet.
 
 octopus-security:
   roles: {}

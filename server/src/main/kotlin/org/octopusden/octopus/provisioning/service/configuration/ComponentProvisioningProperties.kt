@@ -15,8 +15,9 @@ import org.springframework.boot.context.properties.ConfigurationProperties
  *       origins: [ { profile: regular-external }, { profile: regular-internal } ]
  * ```
  *
- * The service account for the downstream calls comes from the security library's
- * `spring.security.oauth2.client.registration.keycloak.client-id` and `client-secret`.
+ * The calls to vcs-facade and teamcity-automation-service go through the gateway with a technical
+ * account (`technical-account.username` and `password`, from Vault), sent as HTTP Basic auth.
+ * The gateway turns it into a Bearer token. The components registry is called with the caller's token.
  */
 @ConfigurationProperties("component-provisioning")
 data class ComponentProvisioningProperties(

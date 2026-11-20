@@ -49,7 +49,7 @@ The service reads its settings from Spring Cloud Config (token in `VAULT_TOKEN`)
 | Key | Meaning |
 |---|---|
 | `auth-server.url`, `auth-server.realm` | The Keycloak server and realm; the token issuer (`spring.security.oauth2.resourceserver.jwt.issuer-uri`) is derived from them |
-| `spring.security.oauth2.client.registration.keycloak.client-id`, `client-secret` | The service account (from Vault) |
+| `technical-account.username`, `technical-account.password` | The technical account (from Vault) for vcs-facade and teamcity-automation-service, sent as HTTP Basic auth through the gateway; not used yet |
 | `octopus-security.roles` | Role to permission map; may be empty |
 | `component-provisioning.configurations` | The catalogue: a list of provisioning configurations |
 | `vcs-facade.url`, `teamcity-automation-service.url`, `components-registry.url` | Base URLs of the services to call; declared, not used yet |
