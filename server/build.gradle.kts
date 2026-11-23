@@ -47,6 +47,8 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-oauth2-resource-server")
     implementation("org.springframework.cloud:spring-cloud-starter-config")
     implementation("org.springframework.cloud:spring-cloud-starter-bootstrap")
+    implementation("org.springframework.retry:spring-retry")
+    implementation("org.springframework.boot:spring-boot-starter-aop")
     implementation("io.micrometer:micrometer-registry-prometheus")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
