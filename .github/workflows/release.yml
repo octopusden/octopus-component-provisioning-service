@@ -1,0 +1,31 @@
+name: Gradle Release
+
+on:
+  repository_dispatch:
+    types: [ release ]
+
+# contents: write to create the tag and the GitHub release; packages: write to push the docker
+# image to ghcr.io and common to GitHub Packages.
+permissions:
+  contents: write
+  packages: write
+
+jobs:
+  build:
+    uses: octopusden/octopus-base/.github/workflows/common-java-gradle-release.yml@v3.4.1
+    with:
+      flow-type: hybrid
+      java-version: '25'
+      commit-hash: ${{ github.event.client_payload.commit }}
+      build-version: ${{ github.event.client_payload.project_version }}
+      docker-image: component-provisioning-service
+      # Nothing goes to Maven Central: no project consumes common from there yet, the contract is
+      # still changing, and a Central version can never be replaced. common goes to the shared
+      # GitHub Packages registry.
+      publish-to-nexus: false
+      github-packages-publications: ":common:maven"
+      github-packages-repository: octopusden/octopus-maven-packages
+      # With publish-to-nexus false nothing reaches Central, so a check-and-register workflow polling
+      # Central could never succeed. Register inside the release instead, after the build and the tag.
+      register-release-immediately: true
+    secrets: inherit
